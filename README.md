@@ -1,5 +1,5 @@
 # dotfiles
-dotfiles for patrick kage.
+dotfiles for dan hurwit.
 
 `copy.sh` copies the currently tracked dotfiles into the repo.
 
