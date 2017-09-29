@@ -5,91 +5,92 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+"let vundle mananage vundle"
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-airline/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'rizzatti/dash.vim'
-Plugin 'othree/html5.vim'
-Plugin 'wesQ3/vim-windowswap'
-Plugin 'elzr/vim-json'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'wavded/vim-stylus'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'rstacruz/sparkup'
-Plugin 'othree/yajs.vim'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'editorconfig/editorconfig'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'shougo/deoplete.nvim'
-Plugin 'zchee/deoplete-jedi'
+
+" Navigate a file quickly, regardless of language 
+Plugin 'Lokaltog/vim-easymotion'
+
+" Allows you to change the order of arguments with ease.
+Plugin 'PeterRincker/vim-argumentative'
+
+" Automatically match pairs intelligently.
+Plugin 'Raimondi/delimitMate'
+
+" Jump around code based on rough filenames
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'evidens/vim-twig'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+
+" Tab autocomplete
+Plugin 'ajh17/VimCompletesMe'
+
+" Git info in the gutter
+Plugin 'powerline/powerline'
+
+" js syntax 
+Plugin 'pangloss/vim-javascript'
+
+" Filetree
+Plugin 'scrooloose/nerdtree'
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+" Search across files
+Plugin 'rking/ag.vim'
+
+" Provide lintning for multiple languages
+Plugin 'scrooloose/syntastic'
+
+" Change surroundings in pairs
+Plugin 'tpope/vim-surround'
+
+" Code folding
+Plugin 'tmhedberg/SimpylFold'
+
+"Git Integration
+Plugin 'tpope/vim-fugitive'
+
+"Colorschemes
+Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()
 filetype plugin indent on
 
-" nerdtree config
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+au BufNewFile, BufRead *.py 
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
 
-" vim airline config
-let g:airline_powerline_fonts = 1
-set laststatus=2
-
-" go away linter
-let g:syntastic_python_checkers = []
-let g:syntastic_javascript_checkers = ['eslint']
-
-" vim multiple cursors config
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-b>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
-
-" JSBeautify
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-" deoplete
-" let g:deoplete#enable_at_startup = 1
-
-"" PYTHON SPECIFICS
-
-" code folding
-set foldmethod=indent
-set foldlevel=99
-" bind to space
-nnoremap <space> za
-
-" highlight extraneous whitespace
-highlight BadWhitespace guifg=red guibg=red
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-" highlighting
-let python_highlight_all=1
-set background=dark
-
-let g:UltiSnipsExpandTrigger="<tab>"
-
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
 
 syntax on
+colorscheme desert
+
 set nu
+set cursorline
 set pastetoggle=<F2>
-set tabstop=8
-set shiftwidth=8
-set noexpandtab
+set fileformats=unix,dos
+set backspace=indent,eol,start
+set wildmenu
+set showmatch
+set incsearch
+set hlsearch
+set foldmethod=indent
+
+filetype indent on
+filetype plugin on
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" 
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
